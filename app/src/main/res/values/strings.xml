@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">bitbaket</string>
+    <string name="title_hint">Title</string>
+    <string name="refresh_channel">Refresh channel</string>
+</resources>
