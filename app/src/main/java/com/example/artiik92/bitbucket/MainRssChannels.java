@@ -1,6 +1,7 @@
-package com.example.artiik92.bitbaket;
+package com.example.artiik92.bitbucket;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.widget.SimpleCursorAdapter;
 
 public class MainRssChannels extends AppCompatActivity {
 
+    SharedPreferences prefs = null;
+
     private ListView channelsList;
     private DbAdapter dbAdapter;
     private Cursor cursor;
@@ -22,10 +25,20 @@ public class MainRssChannels extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_channels);channelsList = (ListView) findViewById(R.id.channelslist);
+        setContentView(R.layout.activity_main_channels);
+        channelsList = (ListView) findViewById(R.id.channelslist);
         dbAdapter = new DbAdapter(this);
+        prefs = getSharedPreferences("com.example.artiik92.bitbucket", MODE_PRIVATE);
         dbAdapter.open();
+        if (prefs.getBoolean("firstrun", true)) {
+            dbAdapter.addChannel("top", "https://habrahabr.ru/rss/best/");
+            dbAdapter.addChannel("Weekly", "https://habrahabr.ru/rss/best/weekly/");
+            dbAdapter.addChannel("Monthly", "https://habrahabr.ru/rss/best/monthly/");
+            dbAdapter.addChannel("All Time", "https://habrahabr.ru/rss/best/alltime/");
+            prefs.edit().putBoolean("firstrun", false).apply();
+        }
         cursor = dbAdapter.getAllChannels();
+
         startManagingCursor(cursor);
         String[] from = new String[] {DbAdapter.KEY_TITLE, DbAdapter.KEY_URL};
         int[] to = new int[] {R.id.channelTitle, R.id.channelUrl};
@@ -75,7 +88,7 @@ public class MainRssChannels extends AppCompatActivity {
     }
 
     public void addNewChannel(View view) {
-        editChannel(true, "", "https://", 1);
+        editChannel(true, "", "https://", 5);
     }
 
 

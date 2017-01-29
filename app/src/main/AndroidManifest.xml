@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.artiik92.bitbaket">
+    package="com.example.artiik92.bitbucket">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -23,7 +23,7 @@
             android:name=".RssChannels"
             android:label="RssReader" />
         <activity
-            android:name=".WebView"
+            android:name=".Web"
             android:label="RssReader" />
 
         <service android:name=".UpdateService" />

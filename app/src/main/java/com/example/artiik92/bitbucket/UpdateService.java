@@ -1,4 +1,4 @@
-package com.example.artiik92.bitbaket;
+package com.example.artiik92.bitbucket;
 
 import android.app.AlarmManager;
 import android.app.IntentService;
@@ -22,7 +22,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class UpdateService  extends IntentService {
 
-    public static final String key = "com.example.artiik92.bitbaket.UpdateService";
+    public static final String key = "UpdateService";
     private static final int period = 15 * 60 * 1000;
 
     private String channelTitle;

@@ -1,4 +1,4 @@
-package com.example.artiik92.bitbaket;
+package com.example.artiik92.bitbucket;
 
 import android.app.Activity;
 import android.content.Intent;
